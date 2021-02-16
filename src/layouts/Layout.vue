@@ -11,17 +11,15 @@ q-layout.doc-layout(view="lHh LpR lff", @scroll="onScroll")
 
       q-space
 
-      header-menu.self-stretch.row.no-wrap(v-if="$q.screen.gt.xs")
-
-      q-btn.q-ml-xs(
-        v-show="showRightDrawerToggler"
-        flat,
-        dense,
-        round,
-        @click="toggleRightDrawer",
-        aria-label="Menu"
-        :icon="mdiClipboardText"
-      )
+      //- q-btn.q-ml-xs(
+      //-   v-show="showRightDrawerToggler"
+      //-   flat,
+      //-   dense,
+      //-   round,
+      //-   @click="toggleRightDrawer",
+      //-   aria-label="Menu"
+      //-   :icon="mdiClipboardText"
+      //- )
 
   q-drawer(
     side="left"
@@ -31,24 +29,24 @@ q-layout.doc-layout(view="lHh LpR lff", @scroll="onScroll")
     content-class="doc-left-drawer"
   )
     q-scroll-area(style="height: calc(100% - 50px); margin-top: 50px")
-      survey-link.layout-link(
-        color="primary"
-        align-class="justify-start"
-        padding-class="q-py-md"
-      )
-      q-separator.q-mb-lg
+      //- survey-link.layout-link(
+      //-   color="primary"
+      //-   align-class="justify-start"
+      //-   padding-class="q-py-md"
+      //- )
+      //- q-separator.q-mb-lg
 
-      .row.justify-center.q-my-lg
-        q-btn(
-          type="a"
-          href="https://donate.quasar.dev"
-          target="_blank"
-          rel="noopener"
-          size="13px"
-          color="primary"
-          :icon="mdiHeartOutline"
-          label="Donate to Quasar"
-        )
+      //- .row.justify-center.q-my-lg
+      //-   q-btn(
+      //-     type="a"
+      //-     href="https://donate.quasar.dev"
+      //-     target="_blank"
+      //-     rel="noopener"
+      //-     size="13px"
+      //-     color="primary"
+      //-     :icon="mdiHeartOutline"
+      //-     label="Donate to Quasar"
+      //-   )
 
       app-menu.q-my-lg
 
@@ -77,30 +75,30 @@ q-layout.doc-layout(view="lHh LpR lff", @scroll="onScroll")
             )
       .layout-drawer-toolbar__shadow.absolute-full.overflow-hidden.no-pointer-events
 
-  q-drawer(
-    v-if="hasRightDrawer"
-    side="right"
-    v-model="rightDrawerState"
-    show-if-above
-    content-class="bg-grey-1"
-    :width="180"
-    @on-layout="updateRightDrawerOnLayout"
-  )
-    q-scroll-area.fit
-      header-menu.q-mt-sm.text-primary.column(v-if="$q.screen.lt.sm", align="right")
+  //- q-drawer(
+  //-   v-if="hasRightDrawer"
+  //-   side="right"
+  //-   v-model="rightDrawerState"
+  //-   show-if-above
+  //-   content-class="bg-grey-1"
+  //-   :width="180"
+  //-   @on-layout="updateRightDrawerOnLayout"
+  //- )
+  //-   q-scroll-area.fit
+  //-     header-menu.q-mt-sm.text-primary.column(v-if="$q.screen.lt.sm", align="right")
 
-      q-list.doc-toc.q-my-lg.text-grey-8
-        q-item(
-          v-for="tocItem in tocList",
-          :key="tocItem.id",
-          clickable,
-          v-ripple,
-          dense,
-          @click="scrollTo(tocItem.id)",
-          :active="activeToc === tocItem.id"
-        )
-          q-item-section(v-if="tocItem.sub === true", side) •
-          q-item-section {{ tocItem.title }}
+  //-     q-list.doc-toc.q-my-lg.text-grey-8
+  //-       q-item(
+  //-         v-for="tocItem in tocList",
+  //-         :key="tocItem.id",
+  //-         clickable,
+  //-         v-ripple,
+  //-         dense,
+  //-         @click="scrollTo(tocItem.id)",
+  //-         :active="activeToc === tocItem.id"
+  //-       )
+  //-         q-item-section(v-if="tocItem.sub === true", side) •
+  //-         q-item-section {{ tocItem.title }}
 
   q-page-container
     transition(
@@ -422,7 +420,7 @@ export default {
 @import '../css/docsearch'
 
 .header
-  background: linear-gradient(145deg, $primary 11%, $dark-primary 75%)
+  background: $primary
 
 .header-logo
   width: 25px

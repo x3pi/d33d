@@ -1,10 +1,7 @@
 <template>
-  <div class="q-page doc-page" id="container">
-    <div >
+    <div id="canva">
       <canvas class="q-page doc-page" id="artifactCanvas" myattr="myattr"></canvas>
     </div>
-
-  </div>
 </template>
 
 <script>
@@ -23,7 +20,7 @@ export default {
   methods: {
     init: function () {
       this.$root.store.toc = [ { id: 'Introduction2', title: 'Introduction2' } ]
-      const container = document.getElementById('container')
+      const container = document.getElementById('canva')
       const canva = document.getElementById('artifactCanvas')
 
       this.camera = new Three.PerspectiveCamera(70, container.clientWidth / container.clientHeight, 0.01, 10)
@@ -66,10 +63,6 @@ export default {
 
 <style scoped>
    #canva {
-    height: 90vh;
-   }
-
-   #artifactCanvas{
     height: 90vh;
    }
 </style>
