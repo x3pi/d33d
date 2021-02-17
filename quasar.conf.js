@@ -7,7 +7,6 @@ module.exports = function (ctx) {
     // --> boot files are part of "main.js"
     // Kiểm tra hiển thị chính sách cookie
     boot: [
-      { path: 'gdpr', server: false },
       'components'
     ],
 
