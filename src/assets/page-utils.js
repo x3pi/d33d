@@ -11,9 +11,7 @@ export function copyToClipboard (text) {
 }
 
 export function copyHeading (id) {
-  console.log(window.location)
   const text = window.location.href + '#' + id
-  console.log(text)
   const el = document.getElementById(id)
 
   if (el) {
