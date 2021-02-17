@@ -11,15 +11,16 @@ export function copyToClipboard (text) {
 }
 
 export function copyHeading (id) {
-  const text = window.location.href + '#' + id
+  const text = window.location.origin + window.location.pathname + '#' + id
   const el = document.getElementById(id)
+  const hashs = window.location.hash.split('#')
 
   if (el) {
     el.id = ''
   }
 
   if ('replaceState' in history) {
-    history.replaceState('', '', `${window.location.href}#${id}`)
+    history.replaceState('', '', `${location.pathname}#${hashs[1]}#${id}`)
   }
   else {
     window.location.hash = '#' + id
