@@ -34,8 +34,9 @@ export default {
       this.mesh = new Three.Mesh(geometry, material)
       this.scene.add(this.mesh)
 
-      this.renderer = new Three.WebGLRenderer({ canvas: canva, antialias: true })
+      this.renderer = new Three.WebGLRenderer({ canvas: canva, antialias: true, alpha: true })
       this.renderer.setSize(container.clientWidth, container.clientHeight)
+      this.renderer.setClearColor(0x000000, 0)
       this.renderer.render(this.scene, this.camera)
     },
     animate: function () {
