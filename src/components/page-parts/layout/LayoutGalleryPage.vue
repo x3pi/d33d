@@ -29,7 +29,7 @@ export default {
       title,
 
       meta: getMeta(
-        title + ' | Quasar Framework',
+        title + ' | Xpi',
         `Example of a Quasar layout that looks like ${this.$route.meta.title}`
       )
     }

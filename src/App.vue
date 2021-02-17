@@ -13,7 +13,7 @@ export default {
 
   meta: {
     title: "Quasar Framework",
-    titleTemplate: (title) => `${title} | Quasar Framework`,
+    titleTemplate: (title) => `${title} | Xpi`,
 
     meta: getMeta(
       "Quasar Framework - Xây dựng giao diện người dùng VueJS hiệu suất cao trong thời gian kỷ lục",
