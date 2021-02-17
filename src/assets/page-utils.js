@@ -11,7 +11,9 @@ export function copyToClipboard (text) {
 }
 
 export function copyHeading (id) {
-  const text = window.location.origin + window.location.pathname + '#' + id
+  console.log(window.location)
+  const text = window.location.href + '#' + id
+  console.log(text)
   const el = document.getElementById(id)
 
   if (el) {
@@ -19,7 +21,7 @@ export function copyHeading (id) {
   }
 
   if ('replaceState' in history) {
-    history.replaceState('', '', `${location.pathname}#${id}`)
+    history.replaceState('', '', `${window.location.href}#${id}`)
   }
   else {
     window.location.hash = '#' + id

@@ -67,7 +67,7 @@ const routes = [
     component: Layout,
     children: [ {
       path: "/",
-      component: () => import('pages/Landing.vue')
+      component: () => import('pages/test.md')
     } ]
   },
   {
