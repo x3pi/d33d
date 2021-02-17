@@ -24,6 +24,7 @@ module.exports = function (ctx) {
     // preFetch: true,
     // Build configuration options.
     build: {
+      publicPath: 'd33d',
       vueRouterMode: 'history', // Vue router mode 'hash' hoặc 'history'
       showProgress: ctx.dev, // Hiển thị thanh tiến trình trong khi biên dịch.
       distDir: 'docs', // Thư mục lưu trữ khi build
