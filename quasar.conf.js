@@ -26,7 +26,7 @@ module.exports = function (ctx) {
     build: {
       vueRouterMode: 'history', // Vue router mode 'hash' hoặc 'history'
       showProgress: ctx.dev, // Hiển thị thanh tiến trình trong khi biên dịch.
-      distDir: 'dist/quasar.dev', // Thư mục lưu trữ khi build
+      distDir: 'docs', // Thư mục lưu trữ khi build
       // analyze: true,
 
       chainWebpack (chain) {

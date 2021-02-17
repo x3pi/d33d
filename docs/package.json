@@ -1,0 +1,42 @@
+{
+  "name": "quasar.dev",
+  "version": "1.0.0",
+  "description": "Official Quasar Docs Website",
+  "author": "Razvan Stoenescu <razvan.stoenescu@gmail.com>",
+  "private": true,
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "core-js": "3.8.3",
+    "docsearch.js": "2.6.3",
+    "prismjs": "1.23.0",
+    "quasar": "1.15.2",
+    "three": "0.125.2",
+    "compression": "^1.0.0",
+    "express": "^4.0.0",
+    "lru-cache": "6.0.0",
+    "vue": "2.6.12",
+    "vue-server-renderer": "2.6.12",
+    "vue-router": "3.2.0",
+    "@quasar/babel-preset-app": "2.0.1"
+  },
+  "engines": {
+    "node": ">= 10.0.0",
+    "npm": ">= 5.6.0",
+    "yarn": ">= 1.6.0"
+  },
+  "browserslist": [
+    "last 4 Chrome versions",
+    "last 4 Firefox versions",
+    "last 2 Edge versions",
+    "last 4 Safari versions",
+    "last 4 Android versions",
+    "last 4 ChromeAndroid versions",
+    "last 4 FirefoxAndroid versions",
+    "last 4 iOS versions"
+  ],
+  "quasar": {
+    "ssr": true
+  }
+}
