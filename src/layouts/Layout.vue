@@ -2,13 +2,6 @@
 q-layout.doc-layout(view="lHh LpR lff", @scroll="onScroll")
   q-header.header(elevated)
     q-toolbar
-      q-btn.q-mr-sm(flat, dense, round, @click="toggleLeftDrawer", aria-label="Menu", :icon="mdiMenu")
-
-      q-btn.quasar-logo.text-bold(key="logo", flat, no-caps, no-wrap, stretch, to="/")
-        q-avatar.doc-layout-avatar
-          img(src="demo.png")
-        q-toolbar-title(shrink) Demo
-
       q-space
 
       //- q-btn.q-ml-xs(
@@ -46,8 +39,7 @@ q-layout.doc-layout(view="lHh LpR lff", @scroll="onScroll")
       //-     color="primary"
       //-     :icon="mdiHeartOutline"
       //-     label="Donate to Quasar"
-      //-   )
-
+      //-
       app-menu.q-my-lg
 
     .absolute-top.bg-white.layout-drawer-toolbar
@@ -56,25 +48,12 @@ q-layout.doc-layout(view="lHh LpR lff", @scroll="onScroll")
         autocapitalize="off"
         autocomplete="off"
         spellcheck="false"
-      )
-        q-input.full-width.doc-algolia.bg-primary(
-          ref="docAlgolia"
-          v-model="search"
-          dense
-          square
-          dark
-          borderless
-          :placeholder="searchPlaceholder"
-          @focus="onSearchFocus"
-          @blur="onSearchBlur"
-        )
-          template(v-slot:append)
-            q-icon(
-              :name="mdiMagnify"
-              @click="$refs.docAlgolia.focus()"
-            )
-      .layout-drawer-toolbar__shadow.absolute-full.overflow-hidden.no-pointer-events
-
+      ).form-logo
+        q-toolbar.full-width.doc-algolia.bg-primary.toolbar-logo
+          q-btn.quasar-logo.text-bold(key="logo", flat, no-caps, no-wrap, stretch, to="/")
+            q-avatar.doc-layout-avatar
+              img(src="demo.png")
+            q-toolbar-title(shrink).q-layout__section--marginal Demo
   //- q-drawer(
   //-   v-if="hasRightDrawer"
   //-   side="right"
@@ -114,19 +93,23 @@ q-layout.doc-layout(view="lHh LpR lff", @scroll="onScroll")
 </template>
 
 <script>
-import { scroll } from 'quasar'
+import { scroll } from "quasar"
 import {
-  mdiMenu, mdiClipboardText, mdiHeartOutline, mdiMagnify, mdiChevronUp
-} from '@quasar/extras/mdi-v5'
+  mdiMenu,
+  mdiClipboardText,
+  mdiHeartOutline,
+  mdiMagnify,
+  mdiChevronUp
+} from "@quasar/extras/mdi-v5"
 
-import AppMenu from 'components/AppMenu'
-import HeaderMenu from 'components/HeaderMenu'
-import SurveyLink from 'components/SurveyLink'
+import AppMenu from "components/AppMenu"
+import HeaderMenu from "components/HeaderMenu"
+import SurveyLink from "components/SurveyLink"
 
 const { setScrollPosition, getScrollPosition } = scroll
 
 export default {
-  name: 'Layout',
+  name: "Layout",
 
   created () {
     this.preventTocUpdate = this.$route.hash.length > 1
@@ -146,24 +129,25 @@ export default {
 
   data () {
     return {
-      search: '',
+      search: "",
       searchFocused: false,
 
       leftDrawerState: false,
       rightDrawerState: false,
       rightDrawerOnLayout: false,
 
-      activeToc: this.$route.hash.length > 1
-        ? this.$route.hash.substring(1)
-        : void 0
+      activeToc:
+        this.$route.hash.length > 1 ? this.$route.hash.substring(1) : void 0
     }
   },
 
   computed: {
     searchPlaceholder () {
       return this.searchFocused === true
-        ? 'Type to start searching...'
-        : (this.$q.platform.is.desktop === true ? `Type ' / ' to focus here...` : 'Search...')
+        ? "Type to start searching..."
+        : this.$q.platform.is.desktop === true
+          ? `Type ' / ' to focus here...`
+          : "Search..."
     },
 
     hasRightDrawer () {
@@ -171,15 +155,14 @@ export default {
     },
 
     showRightDrawerToggler () {
-      return this.hasRightDrawer === true &&
-        this.rightDrawerOnLayout === false
+      return this.hasRightDrawer === true && this.rightDrawerOnLayout === false
     },
 
     tocList () {
       const toc = this.$root.store.toc
       return toc.length > 0
         ? [
-          { id: 'Introduction', title: 'Introduction' },
+          { id: "Introduction", title: "Introduction" },
           ...this.$root.store.toc
         ]
         : toc
@@ -231,11 +214,11 @@ export default {
       if (this.rightDrawerOnLayout !== true) {
         this.rightDrawerState = false
         this.scrollTimer = setTimeout(() => {
-          this.changeRouterHash('#' + id)
+          this.changeRouterHash("#" + id)
         }, 300)
       }
       else {
-        this.changeRouterHash('#' + id)
+        this.changeRouterHash("#" + id)
       }
     },
 
@@ -300,11 +283,11 @@ export default {
 
     focusOnSearch (evt) {
       if (
-        evt.target.tagName !== 'INPUT' &&
-        String.fromCharCode(evt.keyCode) === '/'
+        evt.target.tagName !== "INPUT" &&
+        String.fromCharCode(evt.keyCode) === "/"
       ) {
         evt.preventDefault()
-        this.search = ''
+        this.search = ""
         if (!this.leftDrawerState) {
           this.leftDrawerState = true
         }
@@ -324,23 +307,25 @@ export default {
 
     scrollToCurrentAnchor (immediate) {
       const { hash } = this.$route
-      const el = hash.length > 1
-        ? document.getElementById(hash.substring(1))
-        : null
+      const el =
+        hash.length > 1 ? document.getElementById(hash.substring(1)) : null
 
       if (el !== null) {
         if (immediate === true) {
           let anchorEl = el
-          while (anchorEl.parentElement !== null && anchorEl.parentElement.classList.contains('q-page') !== true) {
+          while (
+            anchorEl.parentElement !== null &&
+            anchorEl.parentElement.classList.contains("q-page") !== true
+          ) {
             anchorEl = anchorEl.parentElement
           }
 
-          document.body.classList.add('q-scroll--lock')
-          anchorEl.classList.add('q-scroll--anchor')
+          document.body.classList.add("q-scroll--lock")
+          anchorEl.classList.add("q-scroll--anchor")
 
           setTimeout(() => {
-            document.body.classList.remove('q-scroll--lock')
-            anchorEl && anchorEl.classList.remove('q-scroll--anchor')
+            document.body.classList.remove("q-scroll--lock")
+            anchorEl && anchorEl.classList.remove("q-scroll--anchor")
           }, 2000)
         }
 
@@ -363,26 +348,26 @@ export default {
 
       import(
         /* webpackChunkName: "algolia" */
-        'docsearch.js'
+        "docsearch.js"
       ).then(docsearch => {
         docsearch.default({
-          apiKey: '5c15f3938ef24ae49e3a0e69dc4a140f',
-          indexName: 'quasar-framework',
-          inputSelector: '.doc-algolia input',
+          apiKey: "5c15f3938ef24ae49e3a0e69dc4a140f",
+          indexName: "quasar-framework",
+          inputSelector: ".doc-algolia input",
           algoliaOptions: {
             hitsPerPage: 7
           },
           handleSelected: (a, b, suggestion, c, context) => {
-            const url = suggestion.url.replace('https://quasar.dev', '')
+            const url = suggestion.url.replace("https://quasar.dev", "")
 
-            this.search = ''
+            this.search = ""
             this.$router.push(url).catch(() => {})
             this.$refs.docAlgolia.blur()
           }
         })
 
         if (this.$q.platform.is.desktop === true) {
-          window.addEventListener('keypress', this.focusOnSearch)
+          window.addEventListener("keypress", this.focusOnSearch)
         }
 
         if (searchQuery) {
@@ -394,7 +379,9 @@ export default {
           this.search = searchQuery
           this.$refs.docAlgolia.focus()
           setTimeout(() => {
-            this.$refs.docAlgolia.$refs.input.dispatchEvent(new Event('input', {}))
+            this.$refs.docAlgolia.$refs.input.dispatchEvent(
+              new Event("input", {})
+            )
           })
         }
       })
@@ -410,7 +397,7 @@ export default {
     clearTimeout(this.scrollTimer)
 
     if (this.$q.platform.is.desktop === true) {
-      window.removeEventListener('keypress', this.focusOnSearch)
+      window.removeEventListener("keypress", this.focusOnSearch)
     }
   }
 }
@@ -419,6 +406,8 @@ export default {
 <style lang="sass">
 @import '../css/docsearch'
 
+.q-layout__shadow:after
+  box-shadow: none !important
 .header
   background: $primary
 
